@@ -1,0 +1,96 @@
+/* app.css*/
+body {
+  padding: 100px 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: middle;
+}
+
+.container > .row {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+span.badge-medium {
+padding: 11px 10px;
+  margin: 0px 8px;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: top;
+}
+.marginB11{
+  width: 100%;
+  color: white !important;
+}
+
+.display1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.label_1 {
+  color: white;
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.sort-by{
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+  background-color: dimgrey;
+  text-transform: uppercase;
+  justify-content: center;
+  width: 100%;
+  font-weight: 700;
+}
+
+.button-item{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.danger{
+  background-color: #f44336;
+} 
+
+.success {
+  background-color: #04AA6D;
+}
+
+.warning {
+  background-color: #ff9800;
+} 
+
+.marginB10{
+  justify-content: flex-end;
+  height: 50px;
+  margin-top: 10px;
+  padding: 0%;
+}
+.panel-success{
+  padding-top: 20px;
+}
+
+@media (max-width: 992px) {
+  .add-task {
+      margin-top: 50px;
+  }
+
+}
+
+.task{
+visibility: hidden;
+opacity: 0;
+}
+
+.task.opentask{
+visibility:visible;
+opacity: 1;
+}
