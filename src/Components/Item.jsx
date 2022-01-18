@@ -1,19 +1,38 @@
-
 import EditItem from "./EditItem"
 import { useState } from "react"
+import swal from 'sweetalert';
+import { useDispatch } from "react-redux";
+import { deleteItem } from "../actions/item";
 
 export default function Item(props){
-    const task  = {
-        item :props.item
-    }
-    
+ 
+    //dispatch 
+    const dispatchItem = useDispatch()
+
     const [toggleEdit,setToggleEdit] = useState(false)
 
     const handleEdit=()=>{      
-        props.actionTaskSelected(task)
-        // props.actionToggleEdit(!toggleEdit)
          setToggleEdit(!toggleEdit)   
-        //  console.log(task);
+    }
+
+    //xoa item
+    const handleDelete=(taskSelect)=>{
+        swal({
+            title: "Bạn có muốn xóa: " + taskSelect.taskname + " ?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+           })
+           .then((willDelete) => {
+            if (willDelete) {
+              swal({
+                title: "Item đã được xóa bỏ",
+                icon: "success",
+              });
+              const actionDelete = deleteItem(taskSelect)
+              dispatchItem(actionDelete)
+            }
+          });
     }
     
     return(
@@ -21,7 +40,7 @@ export default function Item(props){
 
                      <tr>
                             <td className="text-center">{props.index}</td>
-                            <td>{props.item.Taskname}</td>
+                            <td>{props.item.taskname}</td>
                             <td className="text-center">
                             {
                                 props.item.level === "0" ? (
@@ -35,8 +54,8 @@ export default function Item(props){
                             </td>
                             
                             <td className="button-item">
-                                <button type="button" className="btn btn-warning btn-sm" onClick={()=>handleEdit()}>Edit</button>
-                                <button type="button" className="btn btn-danger btn-sm" onClick={(item)=>props.handleDelete(task)}>Delete</button>
+                                <button type="button" className="btn btn-warning btn-sm" onClick={handleEdit}>Edit</button>
+                                <button type="button" className="btn btn-danger btn-sm" onClick={()=>handleDelete(props.item)}>Delete</button>
                             </td>
                         </tr>       
                    <EditItem
@@ -44,8 +63,6 @@ export default function Item(props){
                    toggleEdit={toggleEdit}
                    index={props.index}
                    item = {props.item}
-                   handleSave={props.handleSave}
-                   onChangeSelected = {props.onChangeSelected}
                    />
         </>                
     )

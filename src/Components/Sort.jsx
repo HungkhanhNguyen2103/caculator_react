@@ -1,6 +1,33 @@
+import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useDispatch } from 'react-redux';
+import { sortItem } from '../actions/item';
 
-export default function Sort(props){
+export default function Sort(){
+
+    const [compare, setCompare] = useState({
+        title: "name",
+        level: "asc",
+      });
+
+    const dispatch = useDispatch()  
+    
+
+    const handleChangeSort = (title,level) => {
+        // console.log(title , level);
+        setCompare({
+            title : title,
+            level : level
+        })
+        const compareSort = {
+            title : title,
+            level : level
+        }
+        dispatch(sortItem(compareSort))
+    }
+
+
+
     return(
         // 
         <>
@@ -9,13 +36,13 @@ export default function Sort(props){
                     Sort by
                     </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={(title,level)=>props.handleChangeSort("name","asc")}>Name ASC</Dropdown.Item>
-                    <Dropdown.Item onClick={(title,level)=>props.handleChangeSort("name" ,"desc")}>Name DESC</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>handleChangeSort("name","asc")}>Name ASC</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>handleChangeSort("name" ,"desc")}>Name DESC</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item onClick={(title,level)=>props.handleChangeSort("level","asc")}>Level ASC</Dropdown.Item>
-                    <Dropdown.Item onClick={(title,level)=>props.handleChangeSort("level" ,"desc")}>Level DESC</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>handleChangeSort("level","asc")}>Level ASC</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>handleChangeSort("level" ,"desc")}>Level DESC</Dropdown.Item>
                 </Dropdown.Menu>
-                <div className="sort-by"><span className="label label-success label-medium">{props.compare.title} - {props.compare.level}</span></div>
+                <div className="sort-by"><span className="label label-success label-medium">{compare.title} - {compare.level}</span></div>
             </Dropdown> 
 
         </>

@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux";
 import Item from "./Item";
 
-export default function ListItem(props){
+export default function ListItem(){
     
+    const Itemlist = useSelector(state => state.item.list)
 
     return(
         
@@ -18,17 +20,15 @@ export default function ListItem(props){
                             </tr>
                         </thead>
                         <tbody>
-                            { props.listTask.length !== 0 ? (
-                               props.listTask.map((item,key) =>
+                            { Itemlist.length !== 0 ? (
+                               Itemlist.map((item,key) =>
                                <Item 
                                item={item} 
                                key={key} 
                                index={key}
-                                handleSave={props.handleSave}
-                                actionTaskSelected={props.actionTaskSelected}
-                                // actionToggleEdit={props.actionToggleEdit}
-                               handleDelete={props.handleDelete}
-                               onChangeSelected = {props.onChangeSelected}   
+                            //     actionTaskSelected={props.actionTaskSelected}
+                            //     // actionToggleEdit={props.actionToggleEdit}
+                            //    onChangeSelected = {props.onChangeSelected}   
                                ></Item>
                                )
                             ) : (
