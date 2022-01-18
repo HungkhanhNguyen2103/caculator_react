@@ -10,6 +10,7 @@ function App() {
       {/* <Nav/> */}
       <Routes>
         <Route path="" element={<Home />} />
+        <Route path="todolist" element={<Home />} />
         <Route path="login" element={<LoginForm />} />
         <Route path="dashboard" element={<Home />} />
       </Routes>
